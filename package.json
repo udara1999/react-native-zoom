@@ -1,7 +1,7 @@
 {
   "name": "@udara1999/react-native-zoom",
   "title": "React Native Zoom",
-  "version": "0.0.6",
+  "version": "0.0.9",
   "description": "A basic wrapper of Zoom US iOS/Android for React Native",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,11 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/udara1999/react-native-zoom.git",
-    "baseUrl": "https://github.com/udara1999/react-native-zoom"
+    "baseUrl": "https://github.com/udara1999/react-native-zoom",
+    "directory": "@udara1999/react-native-zoom"
+  },
+  "publishConfig": {
+    "registry":"https://npm.pkg.github.com/udara1999"
   },
   "keywords": [
     "react",

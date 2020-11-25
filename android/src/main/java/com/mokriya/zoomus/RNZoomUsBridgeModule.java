@@ -14,6 +14,8 @@ import com.facebook.react.modules.core.DeviceEventManagerModule;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.bridge.Arguments;
 
+import us.zoom.sdk.MeetingOptions;
+import us.zoom.sdk.MeetingViewsOptions;
 import us.zoom.sdk.ZoomSDK;
 import us.zoom.sdk.ZoomError;
 import us.zoom.sdk.ZoomSDKInitializeListener;
@@ -177,6 +179,30 @@ public class RNZoomUsBridgeModule extends ReactContextBaseJavaModule implements 
         params.displayName = displayName;
         params.meetingNo = meetingNo;
         params.password = meetingPassword;
+
+        JoinMeetingOptions meetingOptions = new JoinMeetingOptions();
+
+        opts.no_driving_mode = meetingOptions.no_driving_mode;
+        opts.no_invite = meetingOptions.no_invite;
+        opts.no_meeting_end_message = meetingOptions.no_meeting_end_message;
+        opts.no_meeting_error_message = meetingOptions.no_meeting_error_message;
+        opts.no_titlebar = meetingOptions.no_titlebar;
+        opts.no_bottom_toolbar = meetingOptions.no_bottom_toolbar;
+        opts.no_dial_in_via_phone = meetingOptions.no_dial_in_via_phone;
+        opts.no_dial_out_to_phone = meetingOptions.no_dial_out_to_phone;
+        opts.no_disconnect_audio = meetingOptions.no_disconnect_audio;
+        opts.no_share = meetingOptions.no_share;
+        opts.no_video = meetingOptions.no_video;
+        opts.invite_options = meetingOptions.invite_options;
+        opts.participant_id = meetingOptions.participant_id;
+        opts.custom_meeting_id = meetingOptions.custom_meeting_id;
+        opts.no_unmute_confirm_dialog=meetingOptions.no_unmute_confirm_dialog;
+        opts.no_webinar_register_dialog=meetingOptions.no_webinar_register_dialog;
+        opts.meeting_views_options = MeetingViewsOptions.NO_BUTTON_SHARE +
+                MeetingViewsOptions.NO_TEXT_MEETING_ID +
+                MeetingViewsOptions.NO_TEXT_PASSWORD +
+                MeetingViewsOptions.NO_BUTTON_PARTICIPANTS +
+                MeetingViewsOptions.NO_BUTTON_MORE ;
 
         int joinMeetingResult = meetingService.joinMeetingWithParams(reactContext.getCurrentActivity(), params, opts);
         Log.i(TAG, "joinMeeting, joinMeetingResult=" + joinMeetingResult);
