@@ -1,0 +1,36 @@
+{
+  "name": "@udara1999/react-native-zoom",
+  "title": "React Native Zoom",
+  "version": "0.0.6",
+  "description": "A basic wrapper of Zoom US iOS/Android for React Native",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/udara1999/react-native-zoom.git",
+    "baseUrl": "https://github.com/udara1999/react-native-zoom"
+  },
+  "keywords": [
+    "react",
+    "react-native",
+    "zoom",
+    "zoom sdk"
+  ],
+  "author": "Udara",
+  "license": "MIT",
+  "licenseFilename": "LICENSE",
+  "peerDependencies": {
+    "react": "^16.8.1",
+    "react-native": ">=0.60.0-rc.0 <1.0.x"
+  },
+  "devDependencies": {
+    "react": "^16.9.0",
+    "react-native": "^0.61.5"
+  },
+  "bugs": {
+    "url": "https://github.com/udara1999/react-native-zoom/issues"
+  },
+  "homepage": "https://github.com/udara1999/react-native-zoom#readme"
+}
