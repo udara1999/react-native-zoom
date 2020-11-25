@@ -1,6 +1,8 @@
 package com.mokriya.zoomus;
 
+import android.app.Activity;
 import android.util.Log;
+import android.view.WindowManager;
 
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -47,6 +49,10 @@ public class RNZoomUsBridgeModule extends ReactContextBaseJavaModule implements 
         super(reactContext);
         this.reactContext = reactContext;
         reactContext.addLifecycleEventListener(this);
+        Activity currentActivity = reactContext.getCurrentActivity();
+        if (currentActivity != null) {
+            currentActivity.getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+        }
     }
 
     public void sendEvent(ReactContext reactContext, String eventName, WritableMap params) {
@@ -187,7 +193,7 @@ public class RNZoomUsBridgeModule extends ReactContextBaseJavaModule implements 
         opts.no_meeting_end_message = meetingOptions.no_meeting_end_message;
         opts.no_meeting_error_message = meetingOptions.no_meeting_error_message;
         opts.no_titlebar = meetingOptions.no_titlebar;
-        opts.no_bottom_toolbar = meetingOptions.no_bottom_toolbar;
+//        opts.no_bottom_toolbar = meetingOptions.no_bottom_toolbar;
         opts.no_dial_in_via_phone = meetingOptions.no_dial_in_via_phone;
         opts.no_dial_out_to_phone = meetingOptions.no_dial_out_to_phone;
         opts.no_disconnect_audio = meetingOptions.no_disconnect_audio;
@@ -201,8 +207,7 @@ public class RNZoomUsBridgeModule extends ReactContextBaseJavaModule implements 
         opts.meeting_views_options = MeetingViewsOptions.NO_BUTTON_SHARE +
                 MeetingViewsOptions.NO_TEXT_MEETING_ID +
                 MeetingViewsOptions.NO_TEXT_PASSWORD +
-                MeetingViewsOptions.NO_BUTTON_PARTICIPANTS +
-                MeetingViewsOptions.NO_BUTTON_MORE ;
+                MeetingViewsOptions.NO_BUTTON_PARTICIPANTS;
 
         int joinMeetingResult = meetingService.joinMeetingWithParams(reactContext.getCurrentActivity(), params, opts);
         Log.i(TAG, "joinMeeting, joinMeetingResult=" + joinMeetingResult);
