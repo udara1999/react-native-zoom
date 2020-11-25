@@ -49,10 +49,6 @@ public class RNZoomUsBridgeModule extends ReactContextBaseJavaModule implements 
         super(reactContext);
         this.reactContext = reactContext;
         reactContext.addLifecycleEventListener(this);
-        Activity currentActivity = reactContext.getCurrentActivity();
-        if (currentActivity != null) {
-            currentActivity.getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
-        }
     }
 
     public void sendEvent(ReactContext reactContext, String eventName, WritableMap params) {
@@ -84,6 +80,11 @@ public class RNZoomUsBridgeModule extends ReactContextBaseJavaModule implements 
                 ZoomSDK zoomSDK = ZoomSDK.getInstance();
 
                 zoomSDK.initialize(reactContext.getCurrentActivity(), appKey, appSecret, RNZoomUsBridgeModule.this);
+
+                Activity currentActivity = reactContext.getCurrentActivity();
+                if (currentActivity != null) {
+                    currentActivity.getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+                }
             }
         });
         } catch (Exception ex) {
