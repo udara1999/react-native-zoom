@@ -213,6 +213,10 @@ public class RNZoomUsBridgeModule extends ReactContextBaseJavaModule implements 
         int joinMeetingResult = meetingService.joinMeetingWithParams(reactContext.getCurrentActivity(), params, opts);
         Log.i(TAG, "joinMeeting, joinMeetingResult=" + joinMeetingResult);
 
+        Activity currentActivity = reactContext.getCurrentActivity();
+        currentActivity.getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+
+
         if (joinMeetingResult != MeetingError.MEETING_ERROR_SUCCESS) {
             promise.reject("ERR_ZOOM_JOIN", "joinMeeting, errorCode=" + joinMeetingResult);
         }
