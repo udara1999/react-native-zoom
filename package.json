@@ -1,7 +1,7 @@
 {
   "name": "@udara1999/react-native-zoom",
   "title": "React Native Zoom",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "A basic wrapper of Zoom US iOS/Android for React Native",
   "main": "index.js",
   "scripts": {
