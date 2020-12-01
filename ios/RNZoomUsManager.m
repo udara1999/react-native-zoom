@@ -14,12 +14,12 @@ static RNZoomUsBridgeEventEmitter *internalEmitter = nil;
   if (sharedInstance == nil) {
     sharedInstance = [[super allocWithZone:NULL] init];
   }
-  
+
   return sharedInstance;
 }
 
 - (void)authenticate: (NSString *)appKey appSecret:(NSString *)appSecret completion:(void (^_Nonnull)(NSUInteger resultCode))completion{
-  
+
   MobileRTCSDKInitContext *context = [MobileRTCSDKInitContext new];
   [context setDomain:kSDKDomain];
   [context setEnableLog:NO];
@@ -34,11 +34,11 @@ static RNZoomUsBridgeEventEmitter *internalEmitter = nil;
     [authService sdkAuth];
     completion(1);
   }
-  
+
 }
 
 - (void)startMeeting:(NSString *)meetingId userName:(NSString *)userName userId:(NSString *)userId userZak:(NSString *)userZak completion:(void (^_Nonnull)(NSUInteger resultCode))completion {
-  
+
     MobileRTCMeetingService *ms = [[MobileRTC sharedRTC] getMeetingService];
     if (ms) {
         ms.delegate = self;
@@ -58,11 +58,18 @@ static RNZoomUsBridgeEventEmitter *internalEmitter = nil;
 
 - (void)joinMeeting:(NSString *)meetingId userName:(NSString *)userName password:(NSString *)password completion:(void (^_Nonnull)(NSUInteger resultCode))completion {
   NSLog(@"joinMeeting called on native module");
-    
+
+  [[MobileRTC sharedRTC] getMeetingSettings].meetingTitleHidden = true;
+  [[MobileRTC sharedRTC] getMeetingSettings].meetingPasswordHidden = true;
+  [[MobileRTC sharedRTC] getMeetingSettings].meetingInviteHidden = true;
+  [[MobileRTC sharedRTC] getMeetingSettings].meetingParticipantHidden = true;
+  [[MobileRTC sharedRTC] getMeetingSettings].meetingShareHidden = true;
+  [[MobileRTC sharedRTC] getMeetingSettings].topBarHidden = true;
+
   MobileRTCMeetingService *ms = [[MobileRTC sharedRTC] getMeetingService];
   if (ms) {
     ms.delegate = self;
-      
+
     MobileRTCMeetingJoinParam * joinParam = [[MobileRTCMeetingJoinParam alloc]init];
     joinParam.userName = userName;
     joinParam.meetingNumber = meetingId;
